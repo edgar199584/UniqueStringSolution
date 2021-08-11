@@ -19,7 +19,11 @@ namespace UniqueString.Core.BL
         {
             var result = UniqueStringRepository.GetUniqueString(text);
             if (result == null)
+            {
+                UniqueStringRepository.Add(new Entities.UniqueStringEntity { Text = text});
+                UniqueStringRepository.SaveChanges();
                 return true;
+            }
             return false;
         }
     }
